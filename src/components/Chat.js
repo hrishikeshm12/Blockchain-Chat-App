@@ -180,7 +180,7 @@ class Chat extends Component {
         if (splitted.length !== 2)
             return false
 
-        if (splitted[0] == "send_ether" && this.isNumeric(splitted[1])) {
+        if (splitted[0] === "send_ether" && this.isNumeric(splitted[1])) {
             var asWei = parseFloat(splitted[1]) * 1e18
             await this.state.chatContract.methods.sendEther(this.state.otherAccount).send({
                 from: this.state.account,
@@ -286,8 +286,8 @@ class Chat extends Component {
         var addresses = []
         for (var i = 0; i < this.state.accounts.length; i++) {
             let account = this.state.accounts[i]
-            if (isOtherAccount && account == this.state.otherAccount
-                || !isOtherAccount && account == this.state.account)
+            if (((isOtherAccount && (account === this.state.otherAccount))
+                || ((!isOtherAccount) && (account === this.state.account))))
                 addresses.push(<option value={account} selected>{account}</option>)
             else {
                 addresses.push(<option value={account}>{account}</option>)
